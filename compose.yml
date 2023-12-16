@@ -1,0 +1,13 @@
+services:
+  firebase:
+    build:
+      context: .
+      dockerfile: ./docker/firebase/Dockerfile
+    volumes:
+      - ./.firebaserc:/opt/firebase/.firebaserc
+      - ./firebase.json:/opt/firebase/firebase.json
+      - ./docker/firebase/bin/:/root/.cache:cached
+      - ./docker/firebase/config/:/root/.config:cached
+      - ./functions:/opt/firebase/functions
+    working_dir: /opt/firebase
+    tty: true
