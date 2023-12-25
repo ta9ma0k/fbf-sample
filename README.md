@@ -53,5 +53,4 @@ gcloud functions add-invoker-policy-binding helloWorld \
 #### OIDCを使う
 
 #### 秘密キーを使う
-## Emulatorで単体テストを実行する
 ## GithubActionsでOIDCを使ってデプロイする
