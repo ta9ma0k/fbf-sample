@@ -33,24 +33,20 @@ curl -X GET \
 > https://us-central1-ankomochiii.cloudfunctions.net/helloWorld
 ```
 
-サービスアカウントを作る
-
-```
-gcloud iam service-accounts create invoke-helloWorld \
---display-name="invoke-helloWorld"
-```
+### GCPから呼び出す
 
 権限の付与
 
-```
-gcloud functions add-invoker-policy-binding helloWorld \
-  --member='serviceAccount:invoke-helloWorld@ankomochiii.iam.gserviceaccount.com'
-```
+RECEIVING_SERVICE = 呼び出されるリソース名
+CALLING_SERVICE_IDENTITY = 呼び出す側のサービスアカウント
 
-### GCPから呼び出す
+```
+gcloud run services add-iam-policy-binding RECEIVING_SERVICE \
+  --member='serviceAccount:CALLING_SERVICE_IDENTITY' \
+  --role='roles/run.invoker'
+```
 
 ### AWSから呼び出す
 #### OIDCを使う
 
-#### 秘密キーを使う
 ## GithubActionsでOIDCを使ってデプロイする
